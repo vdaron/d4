@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace d4.Core.Kernel
 {
-    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : notnull
     {
         private readonly IValidator<TRequest>? _validator;
 

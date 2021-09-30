@@ -18,12 +18,12 @@ namespace d4.Sample.Domain.Projects.Queries
     {
         public class GetApprovedProjectsSpecification : Specification<Project>
         {
-            public GetApprovedProjectsSpecification(int? index, int? max, [CanBeNull] Expression<Func<Project,object>> orderBy)
+            public GetApprovedProjectsSpecification(int? index, int? max, Expression<Func<Project, object>>? orderBy)
             {
                 Query.Where(x => x.Approved);
                 if (orderBy != null)
                 {
-                    Query.OrderBy(orderBy);
+                    Query.OrderBy(orderBy!);
                 }
 
                 if (index.HasValue)
@@ -39,9 +39,9 @@ namespace d4.Sample.Domain.Projects.Queries
         }
 
 
-        private readonly IQueryableStore<Project> _queryableStore;
+        private readonly IQueryableStore<Project,string> _queryableStore;
 
-        public GetApprovedProjectsQueryHandler(IQueryableStore<Project> queryableStore)
+        public GetApprovedProjectsQueryHandler(IQueryableStore<Project,string> queryableStore)
         {
             _queryableStore = queryableStore;
         }

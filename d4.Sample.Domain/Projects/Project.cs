@@ -1,6 +1,4 @@
 using System;
-using System.Data.Common;
-using d4.Core;
 using d4.Core.Kernel;
 using d4.Core.Kernel.Interfaces;
 
@@ -20,13 +18,12 @@ namespace d4.Sample.Domain.Projects
         public static Project Create(ProjectName name)
         {
             var p = new Project(Guid.NewGuid().ToString("N"), name);
-            p.PublishEvent(new ProjectCreatedEvent(p.Id));
+            p.AddEvent(new ProjectCreatedEvent(p.Id));
             return p;
         }
 
-        private Project(string id, ProjectName name)
+        private Project(string id, ProjectName name):base(id)
         {
-            Id = id ?? throw new ArgumentNullException(nameof(id));
             Name = name ?? throw new ArgumentNullException(nameof(name));
             CreationDate = DateTime.UtcNow;
         }
@@ -34,13 +31,13 @@ namespace d4.Sample.Domain.Projects
         public void Rename(ProjectName name)
         {
             Name = name;
-            PublishEvent(new ProjectRenamedEvent(Id));
+            AddEvent(new ProjectRenamedEvent(Id));
         }
 
         public void Approve()
         {
             Approved = true;
-            PublishEvent(new ProjectApprovedEvent(Id));
+            AddEvent(new ProjectApprovedEvent(Id));
         }
     }
 }

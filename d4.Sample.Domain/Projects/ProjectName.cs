@@ -1,7 +1,7 @@
 using Ardalis.GuardClauses;
 using d4.Core.Kernel;
 
-namespace d4.Core
+namespace d4.Sample.Domain.Projects
 {
     public record ProjectName : ValueObject
     {
@@ -9,7 +9,7 @@ namespace d4.Core
         
         public ProjectName(string name)
         {
-            Value = Guard.Against.NullOrWhiteSpace(name, nameof(name));;
+            Value = Guard.Against.Length(name, nameof(name),2,100);
         }
     }
 }

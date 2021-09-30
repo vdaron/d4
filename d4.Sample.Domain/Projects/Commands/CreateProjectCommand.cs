@@ -14,7 +14,6 @@ namespace d4.Sample.Domain.Projects.Commands
         public CreateProjectCommandValidator()
         {
             RuleFor(x => x.Name)
-                .Length(1, 100).WithMessage("Name length must be between 2 and 10 characters")
                 .NotEmpty().WithMessage("Username cannot be empty");
         }
     }
@@ -31,7 +30,7 @@ namespace d4.Sample.Domain.Projects.Commands
         public async Task<Unit> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
             var p = Project.Create(new ProjectName(request.Name));
-            await _projectCommandRepository.AddAsync(p);
+            await _projectCommandRepository.CreateAsync(p);
             return Unit.Value;
         }
     }

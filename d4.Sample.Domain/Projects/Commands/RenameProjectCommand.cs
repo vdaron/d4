@@ -16,7 +16,6 @@ namespace d4.Sample.Domain.Projects.Commands
             RuleFor(x => x.ProjectId)
                 .NotEmpty().WithMessage("ProjectId cannot be empty");
             RuleFor(x => x.NewName)
-                .Length(1, 100).WithMessage("Name length must be between 2 and 10 characters")
                 .NotEmpty().WithMessage("Username cannot be empty");
         }
     }

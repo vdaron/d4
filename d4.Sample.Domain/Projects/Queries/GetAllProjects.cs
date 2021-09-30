@@ -18,11 +18,11 @@ namespace d4.Sample.Domain.Projects.Queries
     {
         public class GetAllProjectsQuerySpecification : Specification<Project>
         {
-            public GetAllProjectsQuerySpecification(int? index, int? max, [CanBeNull] Expression<Func<Project,object>> orderBy)
+            public GetAllProjectsQuerySpecification(int? index, int? max, Expression<Func<Project,object>>? orderBy)
             {
                 if (orderBy != null)
                 {
-                    Query.OrderBy(orderBy);
+                    Query.OrderBy(orderBy!);
                 }
 
                 if (index.HasValue)
@@ -38,9 +38,9 @@ namespace d4.Sample.Domain.Projects.Queries
         }
 
 
-        private readonly IQueryableStore<Project> _queryableStore;
+        private readonly IQueryableStore<Project,string> _queryableStore;
 
-        public GetAllProjectsQueryHandler(IQueryableStore<Project> queryableStore)
+        public GetAllProjectsQueryHandler(IQueryableStore<Project,string> queryableStore)
         {
             _queryableStore = queryableStore;
         }

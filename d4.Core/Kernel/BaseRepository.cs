@@ -17,7 +17,7 @@ namespace d4.Core.Kernel
         protected abstract Task<T> InternalUpdateAsync(T entity);
         protected abstract Task InternalDeleteAsync(T entity);
 
-        public async Task<T> AddAsync(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             await InternalAddAsync(entity);
             await DispatchEvents(entity);

@@ -1,15 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Reflection;
-using System.Threading;
 using System.Threading.Tasks;
-using d4.Core.Kernel;
-using d4.Core.Kernel.Interfaces;
-using d4.Sample.Domain.Projects;
+using d4.Core;
+using d4.Sample.Domain;
+using d4.Sample.Domain.Employee;
 using d4.Sample.Domain.Projects.Commands;
 using d4.Sample.Domain.Projects.Queries;
-using d4.Sample.Infrastructure.Projects;
-using FluentValidation;
+using d4.Sample.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 
@@ -17,36 +14,34 @@ namespace d4.Sample.Console
 {
     class Program
     {
-
-
         static async Task Main(string[] args)
         {
-            var services = new ServiceCollection();
-            services.AddTransient<IDomainEventDispatcher, DomainEventDispatcher>();
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-            services.AddSingleton<ICommandRepository<Project, string>, ProjectsCommandRepository>();
-            services.AddSingleton<IQueryableStore<Project>>(x => (IQueryableStore<Project>) x.GetService<ICommandRepository<Project, string>>());
-            services.AddValidatorsFromAssembly(typeof(Project).GetTypeInfo().Assembly);
-            services.AddMediatR(typeof(Project).GetTypeInfo().Assembly, typeof(Program).GetTypeInfo().Assembly);
-            var provider = services.BuildServiceProvider();
+            var provider = new ServiceCollection()
+                .Addd4()
+                .AddSampleDomain()
+                .AddSampleInfrastructure()
+                .BuildServiceProvider();
 
             var mediator = provider.GetService<IMediator>();
             
-            await mediator.Send(new CreateProjectCommand("A"));
-            await mediator.Send(new CreateProjectCommand("C"));
-            await mediator.Send(new CreateProjectCommand("B"));
-            await mediator.Send(new CreateProjectCommand("Z"));
-            await mediator.Send(new CreateProjectCommand("AA"));
+            await mediator.Send(new CreateProjectCommand("1A"));
+            await mediator.Send(new CreateProjectCommand("1C"));
+            await mediator.Send(new CreateProjectCommand("1B"));
+            await mediator.Send(new CreateProjectCommand("1Z"));
+            await mediator.Send(new CreateProjectCommand("1AA"));
 
             var result = await mediator.Send(new GetAllProjectsQuery(OrderBy: x => x.Id));
             var result2 = await mediator.Send(new GetApprovedProjectsQuery(OrderBy: x => x.Id));
-
-            await mediator.Send(new ApproveProjectCommand(result.First().Id));
+            var p1 = await mediator.Send(new GetProjectByNameQuery("1B"));
+            
+            await mediator.Send(new ApproveProjectCommand(p1.Id));
 
             var result3 = await mediator.Send(new GetApprovedProjectsQuery(OrderBy: x => x.Id));
 
-            await mediator.Send(new RenameProjectCommand(result.First().Id, "New Name for approved"));
-            
+            await mediator.Send(new RenameProjectCommand(p1.Id, "New Name for approved"));
+
+            var e = Employee.Create(new Trigram("123"), "erer", "erer", DateTime.Today);
+
             System.Console.WriteLine("Done !");
         }
     }

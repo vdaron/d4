@@ -5,7 +5,7 @@ using MediatR;
 
 namespace d4.Core.Kernel
 {
-    public class DomainEventDispatcher : IDomainEventDispatcher
+    internal class DomainEventDispatcher : IDomainEventDispatcher
     {
         private readonly IMediator _mediator;
 
