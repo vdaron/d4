@@ -22,9 +22,9 @@ namespace d4.Sample.Domain.Projects.Commands
     
     internal class RenameProjectCommandHandler : IRequestHandler<RenameProjectCommand>
     {
-        private readonly ICommandRepository<Project,string> _projectCommandRepository;
+        private readonly IProjectRepository _projectCommandRepository;
 
-        public RenameProjectCommandHandler(ICommandRepository<Project,string> projectCommandRepository)
+        public RenameProjectCommandHandler(IProjectRepository projectCommandRepository)
         {
             _projectCommandRepository = projectCommandRepository;
         }

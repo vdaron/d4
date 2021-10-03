@@ -35,6 +35,8 @@ namespace d4.Sample.Domain.Projects.Queries
                 {
                     Query.Take(max.Value);   
                 }
+
+                Query.AsNoTracking();
             }
         }
 

@@ -6,7 +6,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\d4.Core\d4.Core.csproj" />
+      <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="5.2.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
       <ProjectReference Include="..\d4.Sample.Domain\d4.Sample.Domain.csproj" />
     </ItemGroup>
 

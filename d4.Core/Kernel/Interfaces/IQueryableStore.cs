@@ -7,7 +7,9 @@ namespace d4.Core.Kernel.Interfaces
     {
         Task<T> GetById(U id);
         Task<T[]> ListAsync();
+        Task<int> CountAsync();
         Task<T[]> ListAsync(ISpecification<T> spec);
-        Task<T> SingleAsync(ISpecification<T> spec);
+        Task<int> CountAsync(ISpecification<T> spec);
+        Task<T?> SingleOrDefault(ISpecification<T> spec);
     }
 }

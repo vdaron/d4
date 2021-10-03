@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata;
 using d4.Core.Kernel;
 using d4.Core.Kernel.Interfaces;
 
@@ -20,6 +21,11 @@ namespace d4.Sample.Domain.Projects
             var p = new Project(Guid.NewGuid().ToString("N"), name);
             p.AddEvent(new ProjectCreatedEvent(p.Id));
             return p;
+        }
+
+        private Project():base(string.Empty)
+        {
+            
         }
 
         private Project(string id, ProjectName name):base(id)

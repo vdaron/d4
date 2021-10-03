@@ -13,15 +13,17 @@ namespace d4.Sample.Domain.Projects.Queries
 {
     public record GetProjectByNameQuery(string name) : IRequest<Project?>;
 
+    public class GetProjectByNameQuerySpecification : Specification<Project>
+    {
+        public GetProjectByNameQuerySpecification(string name)
+        {
+            Query.Where(x => x.Name == new ProjectName(name));
+            Query.AsNoTracking();
+        }
+    }
     internal class GetProjectByNameQueryHandler : IRequestHandler<GetProjectByNameQuery, Project?>
     {
-        public class GetProjectByNameQuerySpecification : Specification<Project>
-        {
-            public GetProjectByNameQuerySpecification(string name)
-            {
-                Query.Where(x => x.Name.Value == name);
-            }
-        }
+
         
         private readonly IQueryableStore<Project,string> _repository;
 
@@ -32,7 +34,7 @@ namespace d4.Sample.Domain.Projects.Queries
         
         public async Task<Project?> Handle(GetProjectByNameQuery query, CancellationToken cancellationToken)
         {
-            return await _repository.SingleAsync(new GetProjectByNameQuerySpecification(query.name));
+            return await _repository.SingleOrDefault(new GetProjectByNameQuerySpecification(query.name));
         }
     }
 }

@@ -9,8 +9,8 @@ namespace d4.Sample.Infrastructure
     {
         public static IServiceCollection AddSampleInfrastructure(this IServiceCollection services)
         {
-            services.AddSingleton<ICommandRepository<Project, string>, ProjectsCommandRepository>();
-            services.AddSingleton(x => (IQueryableStore<Project,string>) x.GetService<ICommandRepository<Project, string>>());
+            services.AddSingleton<IQueryableStore<Project,string>, ProjectsCommandRepository>();
+            //services.AddSingleton(x => (IQueryableStore<Project,string>) x.GetService<ICommandRepository<Project, string>>());
             return services;
         }
     }

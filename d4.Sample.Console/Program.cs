@@ -7,6 +7,7 @@ using d4.Sample.Domain.Employee;
 using d4.Sample.Domain.Projects.Commands;
 using d4.Sample.Domain.Projects.Queries;
 using d4.Sample.Infrastructure;
+using d4.Sample.Infrastructure.EFCore;
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 
@@ -19,8 +20,12 @@ namespace d4.Sample.Console
             var provider = new ServiceCollection()
                 .Addd4()
                 .AddSampleDomain()
-                .AddSampleInfrastructure()
+                //.AddSampleInfrastructure()
+                .AddSampleInfrastructureEfCode()
                 .BuildServiceProvider();
+
+            var context = provider.GetService<SampleContext>();
+            await context.Database.EnsureCreatedAsync();
 
             var mediator = provider.GetService<IMediator>();
             

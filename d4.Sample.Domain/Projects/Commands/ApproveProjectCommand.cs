@@ -20,9 +20,9 @@ namespace d4.Sample.Domain.Projects.Commands
     
     internal class ApproveProjectCommandHandler : IRequestHandler<ApproveProjectCommand>
     {
-        private readonly ICommandRepository<Project,string> _projectCommandRepository;
+        private readonly IProjectRepository _projectCommandRepository;
 
-        public ApproveProjectCommandHandler(ICommandRepository<Project,string> projectCommandRepository)
+        public ApproveProjectCommandHandler(IProjectRepository projectCommandRepository)
         {
             _projectCommandRepository = projectCommandRepository;
         }

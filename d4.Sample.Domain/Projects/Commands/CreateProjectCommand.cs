@@ -1,7 +1,9 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using d4.Core;
 using d4.Core.Kernel.Interfaces;
+using d4.Sample.Domain.Projects.Queries;
 using FluentValidation;
 using MediatR;
 
@@ -14,21 +16,29 @@ namespace d4.Sample.Domain.Projects.Commands
         public CreateProjectCommandValidator()
         {
             RuleFor(x => x.Name)
-                .NotEmpty().WithMessage("Username cannot be empty");
+                .NotEmpty().WithMessage("Project name cannot be empty");
         }
     }
 
     internal class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand>
     {
-        private readonly ICommandRepository<Project,string> _projectCommandRepository;
+        private readonly IProjectRepository _projectCommandRepository;
+        private readonly IQueryableStore<Project, string> _queryableStore;
 
-        public CreateProjectCommandHandler(ICommandRepository<Project,string> projectCommandRepository)
+        public CreateProjectCommandHandler(
+            IProjectRepository projectCommandRepository, 
+            IQueryableStore<Project, string> queryableStore)
         {
             _projectCommandRepository = projectCommandRepository;
+            _queryableStore = queryableStore;
         }
         
         public async Task<Unit> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
         {
+            var existing = await _queryableStore.SingleOrDefault(new GetProjectByNameQuerySpecification(request.Name));
+            if (existing != null)
+                throw new ApplicationException("Unable to create two project with the same name");
+            
             var p = Project.Create(new ProjectName(request.Name));
             await _projectCommandRepository.CreateAsync(p);
             return Unit.Value;
