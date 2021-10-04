@@ -9,7 +9,7 @@
       <ProjectReference Include="..\d4.Sample.Domain\d4.Sample.Domain.csproj" />
       <ProjectReference Include="..\d4.Sample.Infrastructure.EFCore\d4.Sample.Infrastructure.EFCore.csproj" />
       <ProjectReference Include="..\d4.Sample.Infrastructure.JsonFiles\d4.Sample.Infrastructure.JsonFiles.csproj" />
-      <ProjectReference Include="..\d4.Sample.Infrastructure\d4.Sample.Infrastructure.csproj" />
+      <ProjectReference Include="..\d4.Sample.Infrastructure.InMemory\d4.Sample.Infrastructure.InMemory.csproj" />
     </ItemGroup>
 
     <ItemGroup>

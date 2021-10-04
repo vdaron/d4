@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using d4.Core;
 using d4.Sample.Domain;
@@ -7,7 +6,6 @@ using d4.Sample.Domain.Employees;
 using d4.Sample.Domain.Employees.Commands;
 using d4.Sample.Domain.Projects.Commands;
 using d4.Sample.Domain.Projects.Queries;
-using d4.Sample.Infrastructure;
 using d4.Sample.Infrastructure.EFCore;
 using d4.Sample.Infrastructure.JsonFiles;
 using Microsoft.Extensions.DependencyInjection;

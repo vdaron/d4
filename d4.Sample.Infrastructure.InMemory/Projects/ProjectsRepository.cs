@@ -7,7 +7,7 @@ using d4.Core.Kernel.Interfaces;
 using d4.Sample.Domain.Projects;
 using JetBrains.Annotations;
 
-namespace d4.Sample.Infrastructure.Projects
+namespace d4.Sample.Infrastructure.InMemory.Projects
 {
     public class ProjectsCommandRepository : CommandRepositoryBase<Project,string>, IProjectRepository, IQueryableStore<Project,string>
     {

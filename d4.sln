@@ -8,7 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sample", "Sample", "{B0ED5B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d4.Sample.Console", "d4.Sample.Console\d4.Sample.Console.csproj", "{C600D0A7-8F0B-4FE2-A0F5-EB175AD066F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d4.Sample.Infrastructure", "d4.Sample.Infrastructure\d4.Sample.Infrastructure.csproj", "{EFE50AB4-37B7-4AE3-8055-46C59506F3B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d4.Sample.Infrastructure.InMemory", "d4.Sample.Infrastructure.InMemory\d4.Sample.Infrastructure.InMemory.csproj", "{EFE50AB4-37B7-4AE3-8055-46C59506F3B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d4.Sample.Infrastructure.EFCore", "d4.Sample.Infrastructure.EFCore\d4.Sample.Infrastructure.EFCore.csproj", "{77409E2E-EB7F-4006-8DDF-53063D5B2A7B}"
 EndProject
