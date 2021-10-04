@@ -30,22 +30,21 @@ namespace d4.Sample.Infrastructure.EFCore
         protected override async Task<Project> InternalAddAsync(Project entity)
         {
             _context.Add(entity);
-            await _context.SaveChangesAsync();
             return entity;
         }
 
         protected override async Task<Project> InternalUpdateAsync(Project entity)
         {
             _context.Update(entity);
-            await _context.SaveChangesAsync();
             return entity;
         }
 
         protected override async Task InternalDeleteAsync(Project entity)
         {
             _context.Remove(entity);
-            await _context.SaveChangesAsync();
         }
+
+        public override IUnitOfWork UnitOfWork => _context;
 
         public async Task<Project> GetById(string id)
         {

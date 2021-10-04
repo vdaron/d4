@@ -1,12 +1,13 @@
 ﻿using System;
-using d4.Sample.Domain.Employee;
+using System.Threading.Tasks;
+using d4.Core.Kernel.Interfaces;
 using d4.Sample.Domain.Projects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace d4.Sample.Infrastructure.EFCore
 {
-    public class SampleContext : DbContext
+    public class SampleContext : DbContext, IUnitOfWork
     {
         public DbSet<Project> Projects { get; set; }
 
@@ -33,6 +34,11 @@ namespace d4.Sample.Infrastructure.EFCore
                     x => x.Value, 
                     x => new ProjectName(x));
 
+        }
+
+        public async Task Commit()
+        {
+            await SaveChangesAsync();
         }
     }
 }

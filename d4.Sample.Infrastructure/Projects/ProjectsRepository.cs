@@ -70,5 +70,7 @@ namespace d4.Sample.Infrastructure.Projects
             _projects.Remove(entity.Id);
             return Task.CompletedTask;
         }
+
+        public override IUnitOfWork UnitOfWork => new InMemoryUnitOfWork();
     }
 }

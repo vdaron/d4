@@ -1,7 +1,7 @@
 using Ardalis.GuardClauses;
 using d4.Core.Kernel;
 
-namespace d4.Sample.Domain.Employee
+namespace d4.Sample.Domain.Employees
 {
     public record Trigram : ValueObject
     {

@@ -1,4 +1,6 @@
+using System;
 using System.Reflection;
+using d4.Core.Kernel.Interfaces;
 using d4.Sample.Domain.Projects;
 using FluentValidation;
 using MediatR;
@@ -12,7 +14,6 @@ namespace d4.Sample.Domain
         {
             services.AddValidatorsFromAssembly(typeof(Project).GetTypeInfo().Assembly);
             services.AddMediatR(typeof(Project).GetTypeInfo().Assembly);
-
             return services;
         }
     }

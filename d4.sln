@@ -12,6 +12,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d4.Sample.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d4.Sample.Infrastructure.EFCore", "d4.Sample.Infrastructure.EFCore\d4.Sample.Infrastructure.EFCore.csproj", "{77409E2E-EB7F-4006-8DDF-53063D5B2A7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "d4.Sample.Infrastructure.JsonFiles", "d4.Sample.Infrastructure.JsonFiles\d4.Sample.Infrastructure.JsonFiles.csproj", "{CD8DE3EC-540F-459E-B066-EE71B415CCD7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,11 +40,16 @@ Global
 		{77409E2E-EB7F-4006-8DDF-53063D5B2A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77409E2E-EB7F-4006-8DDF-53063D5B2A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77409E2E-EB7F-4006-8DDF-53063D5B2A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD8DE3EC-540F-459E-B066-EE71B415CCD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD8DE3EC-540F-459E-B066-EE71B415CCD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD8DE3EC-540F-459E-B066-EE71B415CCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD8DE3EC-540F-459E-B066-EE71B415CCD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E4737F1B-3950-4DA4-BC38-C2967BBDFE89} = {B0ED5BF7-C4EB-43FD-A015-4322D5845F31}
 		{C600D0A7-8F0B-4FE2-A0F5-EB175AD066F8} = {B0ED5BF7-C4EB-43FD-A015-4322D5845F31}
 		{EFE50AB4-37B7-4AE3-8055-46C59506F3B5} = {B0ED5BF7-C4EB-43FD-A015-4322D5845F31}
 		{77409E2E-EB7F-4006-8DDF-53063D5B2A7B} = {B0ED5BF7-C4EB-43FD-A015-4322D5845F31}
+		{CD8DE3EC-540F-459E-B066-EE71B415CCD7} = {B0ED5BF7-C4EB-43FD-A015-4322D5845F31}
 	EndGlobalSection
 EndGlobal

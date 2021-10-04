@@ -3,11 +3,11 @@ using Ardalis.GuardClauses;
 using d4.Core.Kernel;
 using d4.Core.Kernel.Interfaces;
 
-namespace d4.Sample.Domain.Employee
+namespace d4.Sample.Domain.Employees
 {
     public record EmployeeCreated(string Trigram) : BaseDomainEvent(DateTime.UtcNow);
     
-    public class Employee :Entity<Trigram>, IAggregateRoot
+    public class Employee : Entity<Trigram>, IAggregateRoot
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }

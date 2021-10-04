@@ -17,9 +17,14 @@ namespace d4.Core
             {
                 options.UseSqlite("DataSource=/tmp/test");
                 options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
-            });
+            }, 
+                // Default is Scoped, but we want to be sure that each UnitOfWork have a new DbContext
+                ServiceLifetime.Transient);
+            
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IQueryableStore<Project,string>, ProjectRepository>();
+            services.AddScoped(c =>
+                (ICommandRepository<Project, string>) c.GetService<IQueryableStore<Project, string>>());
             services.AddSingleton<ISpecificationEvaluator>(x => SpecificationEvaluator.Default);
             return services;
         }

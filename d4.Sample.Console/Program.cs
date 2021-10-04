@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using d4.Core;
 using d4.Sample.Domain;
-using d4.Sample.Domain.Employee;
+using d4.Sample.Domain.Employees;
 using d4.Sample.Domain.Projects.Commands;
 using d4.Sample.Domain.Projects.Queries;
 using d4.Sample.Infrastructure;
@@ -20,7 +20,6 @@ namespace d4.Sample.Console
             var provider = new ServiceCollection()
                 .Addd4()
                 .AddSampleDomain()
-                //.AddSampleInfrastructure()
                 .AddSampleInfrastructureEfCode()
                 .BuildServiceProvider();
 
@@ -29,11 +28,7 @@ namespace d4.Sample.Console
 
             var mediator = provider.GetService<IMediator>();
             
-            await mediator.Send(new CreateProjectCommand("1A"));
-            await mediator.Send(new CreateProjectCommand("1C"));
-            await mediator.Send(new CreateProjectCommand("1B"));
-            await mediator.Send(new CreateProjectCommand("1Z"));
-            await mediator.Send(new CreateProjectCommand("1AA"));
+            await mediator.Send(new CreateProjectsCommand("1A","1C","1B","1Z","1AA"));
 
             var result = await mediator.Send(new GetAllProjectsQuery(OrderBy: x => x.Id));
             var result2 = await mediator.Send(new GetApprovedProjectsQuery(OrderBy: x => x.Id));

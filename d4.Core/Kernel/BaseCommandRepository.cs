@@ -16,6 +16,7 @@ namespace d4.Core.Kernel
         protected abstract Task<T> InternalAddAsync(T entity);
         protected abstract Task<T> InternalUpdateAsync(T entity);
         protected abstract Task InternalDeleteAsync(T entity);
+        public abstract IUnitOfWork UnitOfWork{ get; }
 
         public async Task<T> CreateAsync(T entity)
         {
@@ -35,7 +36,7 @@ namespace d4.Core.Kernel
             await InternalDeleteAsync(entity);
             await DispatchEvents(entity);
         }
-        
+
         private async Task DispatchEvents(T entity)
         {
             if (entity is IDomainEventPublisher eventPublisher)
