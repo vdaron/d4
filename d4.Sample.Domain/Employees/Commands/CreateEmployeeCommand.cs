@@ -35,7 +35,7 @@ namespace d4.Sample.Domain.Employees.Commands
         {
             var e = await _employeeRepository.GetByIdAsync(new Trigram(request.Trigram));
             if(e != null)
-                throw new Exception("Employee Already exists");
+                throw new ArgumentException($"Employee '{request.Trigram}' Already exists");
             
             await _employeeRepository.CreateAsync(
                 Employee.Create(
