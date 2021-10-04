@@ -6,11 +6,6 @@ namespace d4.Core.Kernel
 {
     public abstract class Entity<T> : IDomainEventPublisher
     {
-        protected Entity(T id)
-        {
-            Id = id ?? throw new ArgumentNullException(nameof(id));
-        }
-
         public T Id { get; protected set; }
 
         private readonly List<BaseDomainEvent> _events = new List<BaseDomainEvent>();

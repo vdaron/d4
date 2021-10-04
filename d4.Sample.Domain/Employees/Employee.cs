@@ -11,19 +11,22 @@ namespace d4.Sample.Domain.Employees
     {
         public string FirstName { get; private set; }
         public string LastName { get; private set; }
-        public DateTime? BirthDate { get; private set; }
-        
+        public DateTimeOffset? BirthDate { get; private set; }
         public Address? Address { get; private set; }
 
-        public static Employee Create(Trigram trigram, string firstName, string lastName, DateTime? birthDate, Address? address=null)
+        private Employee()
+        {}
+        
+        public static Employee Create(Trigram trigram, string firstName, string lastName, DateTimeOffset? birthDate, Address? address=null)
         {
             var e = new Employee(trigram, firstName, lastName, birthDate, address);
             e.AddEvent(new EmployeeCreated(trigram.Value));
             return e;
         }
         
-        private Employee(Trigram id, string firstName, string lastName, DateTime? birthDate, Address? address=null) : base(id)
+        private Employee(Trigram id, string firstName, string lastName, DateTimeOffset? birthDate, Address? address=null)
         {
+            Id = id;
             FirstName = Guard.Against.NullOrWhiteSpace(firstName,nameof(firstName));
             LastName = Guard.Against.NullOrWhiteSpace(lastName,nameof(lastName));
             BirthDate = birthDate;

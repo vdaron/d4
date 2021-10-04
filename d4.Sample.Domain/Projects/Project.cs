@@ -23,13 +23,14 @@ namespace d4.Sample.Domain.Projects
             return p;
         }
 
-        private Project():base(string.Empty)
+        private Project()
         {
             
         }
 
-        private Project(string id, ProjectName name):base(id)
+        private Project(string id, ProjectName name)
         {
+            Id = id;
             Name = name ?? throw new ArgumentNullException(nameof(name));
             CreationDate = DateTime.UtcNow;
         }

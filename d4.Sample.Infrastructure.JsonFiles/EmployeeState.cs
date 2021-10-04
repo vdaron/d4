@@ -1,0 +1,12 @@
+using System;
+using d4.Sample.Domain.Employees;
+
+namespace d4.Sample.Infrastructure.JsonFiles
+{
+    internal record EmployeeState(
+        string Trigram,
+        string FirstName,
+        string LastName,
+        DateTimeOffset? BirthDate,
+        Address? Address);
+}

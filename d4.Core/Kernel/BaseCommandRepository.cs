@@ -12,7 +12,7 @@ namespace d4.Core.Kernel
             _domainEventDispatcher = domainEventDispatcher;
         }
 
-        public abstract Task<T> GetByIdAsync(U id);
+        public abstract Task<T?> GetByIdAsync(U id);
         protected abstract Task<T> InternalAddAsync(T entity);
         protected abstract Task<T> InternalUpdateAsync(T entity);
         protected abstract Task InternalDeleteAsync(T entity);
