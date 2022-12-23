@@ -9,14 +9,14 @@ using JetBrains.Annotations;
 
 namespace d4.Sample.Infrastructure.InMemory.Projects
 {
-    public class ProjectsCommandRepository : CommandRepositoryBase<Project,string>, IProjectRepository, IQueryableStore<Project,string>
+    public class ProjectsCommandRepository : CommandRepositoryBase<Project, string>, IProjectRepository
     {
         private readonly Dictionary<string, Project> _projects = new Dictionary<string, Project>();
 
-        public ProjectsCommandRepository(IDomainEventDispatcher domainEventDispatcher):base(domainEventDispatcher)
+        public ProjectsCommandRepository(IDomainEventDispatcher domainEventDispatcher) : base(domainEventDispatcher)
         {
         }
-        
+
         public override Task<Project> GetByIdAsync(string id)
         {
             return Task.FromResult(_projects[id]);
@@ -31,15 +31,15 @@ namespace d4.Sample.Infrastructure.InMemory.Projects
         {
             return Task.FromResult(_projects.Values.ToArray());
         }
+        
+        public Task<Project[]> ListAsync(ISpecification<Project> spec)
+        {
+            return Task.FromResult(spec.Evaluate(_projects.Values).ToArray());
+        }
 
         public Task<int> CountAsync()
         {
             return Task.FromResult(_projects.Count);
-        }
-
-        public Task<Project[]> ListAsync(ISpecification<Project> spec)
-        {
-            return Task.FromResult(spec.Evaluate(_projects.Values).ToArray());
         }
 
         public Task<int> CountAsync(ISpecification<Project> spec)
@@ -55,7 +55,7 @@ namespace d4.Sample.Infrastructure.InMemory.Projects
 
         protected override Task<Project> InternalAddAsync(Project entity)
         {
-            _projects.Add(entity.Id,entity);
+            _projects.Add(entity.Id, entity);
             return Task.FromResult(entity);
         }
 

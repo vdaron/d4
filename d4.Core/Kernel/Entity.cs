@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using d4.Core.Kernel.Interfaces;
 
 namespace d4.Core.Kernel
